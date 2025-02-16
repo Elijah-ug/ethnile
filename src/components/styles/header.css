@@ -1,0 +1,29 @@
+
+
+.img-logo img{
+    width: 78px;
+    height: 80px;
+    margin-left: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all .15s ease-in-out;
+}
+.img-logo img:hover{
+    opacity: .8;
+    width: 84px;
+}
+.apply{
+    margin-top: 20px;
+
+}
+
+@media only screen and (max-width: 600px) {
+    .header-container{
+        padding-top: 1px;
+        padding-left: 12px;
+        padding-bottom: 120px;
+}
+h2 {
+    font-size: 50px;
+}
+}

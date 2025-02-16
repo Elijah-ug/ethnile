@@ -1,0 +1,72 @@
+.home-container-two{
+    display: flex;
+    flex-direction: column;
+    padding-left: 14%;
+    width: 70%;
+}
+.date{
+    font-size: 27.2px;
+    font-weight: 300;
+    letter-spacing: 4px;
+}
+.city-conference{
+    font-weight: 500;
+    font-size: 96px;
+    letter-spacing: 10px;
+}
+ span{
+     background:  linear-gradient(to right, rgb(199, 0, 57), rgb(255, 87, 51) 70%);
+      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text;
+}
+.french-word{
+    padding: 5px 0;
+    font-weight: 400;
+    font-size: 30px;
+    letter-spacing: 3px;
+}
+button{
+    width: 30%;
+    font-weight: 300;
+    font-size: 16px;
+    background-color: #393f44;
+    padding: 18px 0;
+    border: 1px solid #393f44;
+    color: #ccc9c9;
+    letter-spacing: 2px;
+
+
+      background:  linear-gradient(to left, #393f44 50%, rgb(255, 87, 51) 50%) right;
+    background-size: 200%;
+    transition: .5s ease-out;
+}
+button:hover{
+    cursor: pointer;
+background-position: left;
+}
+
+@media only screen and (max-width: 600px) {
+    .home-container-two{
+    padding-left: 14px;
+    width: 90%;
+    padding-bottom: 48%;
+}
+.date{
+    font-size: 20px;
+    font-weight: 200;
+    letter-spacing: 2px;
+}
+.city-conference{
+    font-weight: 300;
+    font-size: 38px;
+    letter-spacing: 2px;
+}
+.french-word{
+    font-weight: 200;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+button{
+    width: 70%;
+}
+}

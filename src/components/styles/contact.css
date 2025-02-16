@@ -1,0 +1,28 @@
+.form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #9b9999;
+}
+label{
+    padding-top: 10px;
+    padding-bottom: 4px;
+}
+textarea,[type="text"],input[type="email"], input[type="submit"]{
+    padding: 10px;
+    outline: none;
+    border-radius: 8px;
+    border: 1px solid #afadad;
+    width: 100%;
+    color: #565656;
+    font-size: 16px;
+    background-color: #c0bdbd;
+}
+input[type="submit"]{
+    margin-top: 10px;
+    width: 100px;
+    cursor: pointer;
+}
+input[type="submit"]:hover{
+    opacity: .8;
+}

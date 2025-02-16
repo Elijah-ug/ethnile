@@ -1,0 +1,74 @@
+.sponsors{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 70%;
+   padding-top: 18%;
+   padding-left: 15%;
+   padding-bottom: 18%;
+
+}
+.title-one{
+    font-size: 50px;
+    font-weight: 300;
+    position: relative;
+    letter-spacing: 2px;
+    padding-left: 40px;
+}
+.title-one:before{
+   content:" ";
+  display: block;
+  height: 1.5px;
+  width: 120px;
+  position: absolute;
+  top: 140%;
+  left: -10%;
+
+  background:  linear-gradient(to right, rgb(237, 3, 69), rgb(203, 108, 86) 50%);
+    background-size: 200%;
+    transition: .5s ease-out;
+}
+.button{
+    width: 40%;
+    text-transform: uppercase;
+    color: #fff;
+}
+.button a{
+    text-decoration: none;
+     color: #fff;
+}
+.content-head{
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 200;
+    color: rgb(246, 72, 72);
+}
+.paragraph{
+    word-spacing: 3px;
+    letter-spacing: 2px;
+}
+
+@media only screen and (max-width: 600px) {
+ .sponsors{
+    display: flex;
+    flex-direction: column;
+    padding-top: 24%;
+    padding-left: 10px;
+    width: 98%;
+}
+.title-one{
+    font-size: 40px;
+    position: relative;
+    letter-spacing: 2px;
+    padding-left: 1px;
+}
+.title-one:before{
+   content:" ";
+  display: block;
+  height: 2px;
+  width: 100px;
+  position: absolute;
+  top: 140%;
+  left: 3%;
+
+}
+}
