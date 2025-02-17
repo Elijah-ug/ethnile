@@ -21,8 +21,6 @@ export default function Speakers() {
               <h3 className='description-head'>Notable Speakers</h3>
                   <p className="coming-soon">comming soon!</p>
               <div className="pics">
-
-
                   <div className="images">
                   {/* <img className='image-one' src={speakerImageOne} alt="speakerImageOne" />
                   <img className='image-one' src={speakerImageOne} alt="speakerImageOne" />

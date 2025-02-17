@@ -16,6 +16,7 @@ export const ContactUs = () => {
       .then(
         () => {
           console.log('SUCCESS!');
+          alert("Message sent successifuly")
         },
         (error) => {
           console.log('FAILED...', error.text);
