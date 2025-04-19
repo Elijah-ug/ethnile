@@ -1,7 +1,7 @@
 import React from 'react'
 import "./styles/about.css"
-import ImageA from "../assets/Imagea.jpeg"
-import ImageB from "../assets/ImageB.jpeg"
+import ImageA from "../assets/eth2.jpg"
+import ImageB from "../assets/ethN.jpg"
 export default function About() {
   return (
       <div className='about'>
@@ -10,10 +10,7 @@ export default function About() {
               {/* <hr /> */}
               <div className="text-first">
                   <main>
-                      EthNile is an In Person Web3 Conference and <br />
-                      Hackathon at the ource of the Nile that will <br />
-                      also involve side events in Kampala.
-
+                      EthNile is an in-person Web3 conference and hackathon hosted at the source of the River Nile, featuring pop-up pitch days, intensive bootcamps, and guided campus and city tours.  <br />
                   </main>
 
               </div>
@@ -22,34 +19,37 @@ export default function About() {
           <div className="main-grid">
               <div className="about-video">
                   {/* vid */}
-                   <img src={ImageA} alt="image" />
+                  <div className="img-b">
+                      <img src={ImageA} alt="image" />
+                      </div>
                   {/* vid */}
               <div className="text-video">
               <h3 className='heading'>decentralising sub-sahara </h3>
                       <main>
-                          Web3 is transforming the global landscape by providing decentralized
-                          and private solutions at scale through blockchain technology.
-                          Africa has already demonstrated its formidable potential in the Web3.0
-                          innovation space. The EthNile Hackathon seeks to bring together emerging
-                          talent in the Web3 space to create decentralized solutions tailored to
-                          Africa's unique challenges and opportunities.
+                          EthNile 2025 is a Web3 hackathon and conference,
+                          hosted in Jinja, Uganda. It unites developers, educators,
+                          and innovators to explore decentralised solutions for real-world challenges.
+                          Through workshops, mentorship, pitch, demo days and hybrid hackathon experiences,
+                          EthNile empowers the next generation of African blockchain builders and fosters global collaboration.
                          </main>
               </div>
           </div>
           {/* about-image */}
           <div className="about-image">
               <div className="img-text">
-                  <h3 className='heading'>onchain, tokenised and african </h3>
+                  <h3 className='heading'>Code of the Continent: Africa’s Decentralized Leap</h3>
                       <main>
-                          At EthNile, we will dive into decentralized solutions from
-                          Africa that are shaping the future. Is the future already here?
-                          We’re driving the conversation on building solutions that will
-                          bring the next million Africans onto the blockchain. Can Africa
-                          fully embrace decentralization? What about the role of regulations?
-                          And what’s the potential of tokenization? Let’s not forget AI.
+                          Can Africa fully embrace decentralization?
+                           How will regulation shape or support this future?
+                           What role will tokenization play in real-world use cases?
+                           How does AI fit into the Web3 revolution?
+                           Join the builders, thinkers, and pioneers leading this conversation—and help write Africa’s decentralized future.
+
+
+
                           </main>
               </div>
-              <div className="img">
+              <div className="img-a">
                   <img src={ImageB} alt="image" />
               </div>
               </div>

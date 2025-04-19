@@ -3,6 +3,7 @@
     flex-direction: column;
     padding-left: 14%;
     width: 70%;
+    padding-top: 8%;
 }
 .date{
     font-size: 27.2px;
@@ -47,7 +48,8 @@ background-position: left;
 
 @media only screen and (max-width: 600px) {
     .home-container-two{
-    padding-left: 14px;
+        padding-top: 22%;
+    padding-left: 50px;
     width: 90%;
     padding-bottom: 48%;
 }

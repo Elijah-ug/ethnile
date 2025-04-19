@@ -7,9 +7,9 @@ export default function Sponsors() {
               <h1 className='title-one'>Sponsors</h1>
           </div>
           <div className="sponsor-content">
-              <button className='button'><a href="#">contact us!</a></button>
+              {/* <button className='button'><a href="https://mail.google.com/mail/u/0/#search/moemucu%40gmail.com">contact us!</a></button> */}
               {/* ...link... */}
-              <h3 className='content-head'>check our sponsor packages</h3>
+              {/* <h3 className='content-head'>check our sponsor packages</h3> */}
           </div>
     </div>
   )

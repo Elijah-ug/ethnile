@@ -1,12 +1,13 @@
-
-
-.img-logo img{
+/* .img-logo img{
     width: 78px;
     height: 80px;
     margin-left: 20px;
     border-radius: 50%;
     cursor: pointer;
     transition: all .15s ease-in-out;
+    background: none;
+  box-shadow: none;
+  filter: none;
 }
 .img-logo img:hover{
     opacity: .8;
@@ -26,4 +27,4 @@
 h2 {
     font-size: 50px;
 }
-}
+} */

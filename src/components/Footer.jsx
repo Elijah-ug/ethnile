@@ -1,5 +1,7 @@
 import React from 'react'
 import "./styles/footer.css"
+import { FaTelegram } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 import { ContactUs } from './ContactUs'
 // import youtube from "../assets"
 
@@ -14,24 +16,19 @@ export default function Footer() {
                   <h3>contact Us</h3>
                  <ContactUs/>
               </div>
-              {/* <div className="links">
-                  <h3>links</h3>
-                  <a href="https://www.asseth.fr/"> Ethereum France</a>
-              </div> */}
               <div className="connection">
                   <h3>socials</h3>
                   <div className="icon-media">
-                  <a href="https://x.com/Ethnile_"><img src={xLogo} alt="" /> </a>
-                        <a href="https://www.youtube.com/channel/UCf7zF8tFOb9T58nBo09BhAw">
-                            <img src={youTubeLogo} alt="" />
-                            </a>
+              <a className='img' href="https://x.com/Ethnile_"> <FaXTwitter /> </a>
+
+              <a className='img' href="https://t.me/ETHNile/1"> <FaTelegram /> </a>
 
                   </div>
                   </div>
           </div>
           <hr className='horizontal-row'/>
           <div className="lower-footer">
-              <p>Copyright &copy; 2025 EthNile | template by Colorlib</p>
+              <p>Copyright &copy; 2025 EthNile</p>
 
           </div>
     </div>

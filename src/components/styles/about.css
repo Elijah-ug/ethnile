@@ -24,23 +24,30 @@
     transition: .5s ease-out;
 }
 .text-first{
+    padding-top: 40px;
+    letter-spacing: 2px;
+    word-spacing: .5px;
+    line-height: 26px;
+     width: 80%;
+     margin: 0 auto;
+
     font-size: 16px;
-    padding-top: 170px;
-    letter-spacing: 2.5px;
     word-spacing: 2.5px;
-    margin-left: -20px;
+    /* margin-left: -20px; */
+    margin-right: 20px;
 }
 /* main-grid styles */
 .main-grid{
     width: 75%;
     padding-left: 10%;
 }
-.img img{
-   height: 360.175px;
+.img-b img{
+   /* height: 360.175px; */
+   width: 476px;
    padding-left: 60px;
 }
-.about-video img{
-   height: 360.175px;
+.img-a img{
+   width: 476px;
 }
 .about-image, .about-video{
     padding-bottom: 20px;
@@ -68,6 +75,15 @@
     color: #f25555;
 }
 @media only screen and (max-width: 600px){
+    .about{
+        width: 100%;
+        overflow-x: hidden;
+    }
+    .text-video{
+        padding-right: 40px;
+        width: 94%;
+        padding-left: 4px;
+    }
     .about-text{
     padding-left: 14px;
     width: 98%;
@@ -75,7 +91,31 @@
     flex-direction: column;
     align-items: baseline;
 }
+.text-first{
+    padding-top: 40px;
+    letter-spacing: 2px;
+    word-spacing: .5px;
+    line-height: 26px;
+     width: 90%;
+     margin: 0 auto;
+}
+.img-text{
+    word-spacing: 2.8px;
+    letter-spacing: 1px;
+    padding-left: 8px;
+    line-height: 26px;
+    width: 90%;
+    padding-right: 40px;
+}
 
+.img-b img{
+   width: 390px;
+   margin-right: 40px;
+}
+.img-a img{
+    width: 390px;
+   margin-right: 16px;
+}
 
 .abt-heading{
     font-size: 40px;
@@ -94,35 +134,17 @@
     background-size: 200%;
     transition: .5s ease-out;
 }
-.text-first{
-    padding-top: 40px;
-    letter-spacing: 2px;
-    word-spacing: .5px;
-    line-height: 26px;
-}
+
 .main-grid{
-    padding-left: 14px;
-    width: 96%;
+    width: 100%;
 }
 .about-image, .about-video{
     display: flex;
     flex-direction: column;
-    align-items: baseline;
+    align-items: center;
+    /* width: 80%; */
 }
- .img img{
-   height: 294px;
-  padding-left: 3.5px;
-}
-.about-video img{
-   width: 96%;
-   padding-left: 3.5px;
-}
-.img-text, .text-video{
-    word-spacing: 2.8px;
-    letter-spacing: 1px;
-    padding-left: 8px;
-    line-height: 26px;
-}
+
 .heading{
     font-size: 14px;
 }

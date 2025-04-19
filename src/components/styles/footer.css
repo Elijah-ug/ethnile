@@ -48,26 +48,31 @@
     word-spacing: 2px;
      letter-spacing: 2px;
 }
-.icon-media a img{
-   width: 26px;
-   border-radius: 20px;
-   border: none;
-   background-color: #fff;
+.icon-media .img {
+   font-size: 30px;
 }
 @media only screen and (max-width: 600px){
+    .footer-container{
+     width: 100%;
+     padding-left: 1px;
+     padding-right: 10%;
+}
     .upper-footer{
     display: flex;
     flex-direction: column;
-    width: 98%;
-    padding-left: 14px;
-    /* padding-bottom: 50px; */
+    width: 80%;
+    /* padding-left: 14px; */
+    /* padding-right: 14px; */
 }
 .about-us{
-    padding-left: 100px;
+    padding-left: 10px;
     text-align: center;
+    /* changed */
+    width: 100%;
 }
 .connection{
-    padding-left: 200px;
+    padding-left: 100px;
     padding-top: 20px;
+
 }
 }

@@ -10,8 +10,9 @@ export const ContactUs = () => {
       // serv61atgice_bt
     //   service_ozgq3t1
     emailjs
-      .sendForm('service_y24blyj', 'template_v59lbzf', form.current, {
-        publicKey: 'KePPrQMuY5jskmxsE',
+      .sendForm('service_qx0qsbq', 'template_yukdhv9', form.current, {
+        // publicKey: 'KePPrQMuY5jskmxsE',
+        publicKey: 'zOSo6VXNR7PMQ93Up',
       })
       .then(
         () => {
@@ -25,6 +26,7 @@ export const ContactUs = () => {
   };
 
   return (
+    <div className="email">
       <form ref={form} onSubmit={sendEmail}>
           <div className="form">
       <label>Name</label>
@@ -35,6 +37,7 @@ export const ContactUs = () => {
       <textarea name="message" />
               <input type="submit" value="Send" />
               </div>
-    </form>
+      </form>
+      </div>
   );
 };

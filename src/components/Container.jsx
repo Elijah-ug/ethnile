@@ -5,11 +5,13 @@ import About from './About'
 import Speakers from './Speakers'
 import Sponsors from './Sponsors'
 import Header from './Header'
+import Navbar from './Navbar'
 
 export default function Container() {
   return (
-      <div>
-          <Header/>
+    <div>
+      <Navbar/>
+      {/* <Header/> */}
           <Home />
           <About />
           <Speakers />
