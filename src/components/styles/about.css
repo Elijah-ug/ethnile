@@ -1,3 +1,27 @@
+.about {
+  position: relative;
+  background-image: url('../../assets/about-bg.jpg'); /* Adjust the path if needed */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white; /* Ensures text is readable */
+  z-index: 1;
+  min-height: 100vh; /* Ensures it's large enough */
+}
+
+.about::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75); /* Lighter overlay */
+  z-index: 0;
+}
+
+.about > * {
+  position: relative;
+  z-index: 1;
+}
+
 .about-text{
     padding-left: 10%;
     width: 60%;

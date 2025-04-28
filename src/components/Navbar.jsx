@@ -15,7 +15,7 @@ const Navbar = () => {
         <div className="bars" onClick={handleIsActive}>
 
             {isActive ? (
-          <span className="burger-icon"><TfiAlignJustify/></span> // X icon
+          <span className="burger-icons"><TfiAlignJustify/></span> // X icon
         ) : (
           <span className="burger-icon"><TfiClose /></span> // Hamburger icon
         )}
