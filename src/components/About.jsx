@@ -2,9 +2,11 @@ import React from 'react'
 import "./styles/about.css"
 import ImageA from "../assets/eth2.jpg"
 import ImageB from "../assets/ethN.jpg"
+import BgImage from "../assets/about-bg.jpg"; // replace with your image file
+
 export default function About() {
   return (
-      <div className='about'>
+      <div className='about'  >
           <div className="about-text">
               <h2 className='abt-heading'>About EthNile</h2>
               {/* <hr /> */}

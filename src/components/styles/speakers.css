@@ -1,3 +1,6 @@
+.speakers-parent{
+    /* margin: 20px; */
+}
 .speaker-container{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -57,6 +60,51 @@
     cursor: pointer;
     /* color: #fff; */
 }
+/* Container for centering and spacing */
+.iframe-container {
+  display: flex;
+  gap: 60px;
+  align-items: center;
+  justify-content: center;
+  margin: 3rem auto;
+  width: 100%;
+}
+.iframe-text{
+    padding: 10px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.7);
+}
+/* Clickable preview */
+.embed-preview-container {
+  width: 47%;
+  position: relative;
+  cursor: pointer;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: #fff;
+}
+
+/* Add a small hover effect */
+.embed-preview-container:hover {
+  transform: scale(1.01);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Optional heading style */
+.embed-preview-container h2 {
+  text-align: center;
+  padding: 1rem;
+  margin: 0;
+  background: linear-gradient(to right, #fd4a4a, #fcb045);
+  color: white;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+/* Responsive adjustments */
+
+
 @media only screen and (max-width: 600px) {
     .speaker-container{
     display: flex;
@@ -64,6 +112,9 @@
     padding-left: 10px;
     width: 96%;
 }
+.embed-preview-container {
+    width: 100%;
+  }
 .head_{
     font-size: 36px;
     font-weight: 200;
