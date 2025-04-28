@@ -1,0 +1,337 @@
+#cloud-config
+
+package_update: true
+package_upgrade: true
+
+packages:
+  - sqlite
+  - apt-transport-https
+  - ca-certificates
+  - curl
+  - gnupg
+  - lsb-release
+  - unattended-upgrades
+
+groups:
+  - docker
+
+system_info:
+  default_user:
+    groups: [docker]
+
+write_files:
+  - owner: www-data:www-data
+    path: /var/www/html/index.html
+    content: |
+      <div>
+        <h1>Server Provisioned by Terraform & Cloud-Init.</h1>
+        <p>
+          Go the the domain
+          <a href="http://scanner.ricardotest.com">scanner.ricardotest.com</a>
+          to see your application after putting src code in <code>/var/www/html</code></p>
+      </div>
+
+  - owner: www-data:www-data
+    path: /etc/nginx/sites-available/scanner.ricardotest.com
+    content: |
+      server {
+        server_name scanner.ricardotest.com;
+        root /var/www/html/scanner/platform/public;
+
+        client_max_body_size 100m;
+
+        add_header X-Frame-Options "SAMEORIGIN";
+        add_header X-Content-Type-Options "nosniff";
+
+        index index.php;
+
+        charset utf-8;
+
+        location / {
+          try_files $uri $uri/ /index.php?$query_string;
+        }
+
+        location = /favicon.ico { access_log off; log_not_found off; }
+        location = /robots.txt  { access_log off; log_not_found off; }
+
+        error_page 404 /index.php;
+
+        location ~ \.php$ {
+          fastcgi_pass unix:/run/php/php8.2-fpm.sock;
+          fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
+          include fastcgi_params;
+        }
+
+        location ~ /\.(?!well-known).* {
+          deny all;
+        }
+      }
+
+  - owner: www-data:www-data
+    path: /etc/needrestart/needrestart.conf
+    # --- START_COMMENT --- --- START_COMMENT --- --- START_COMMENT --- --- START_COMMENT --- --- START_COMMENT ---
+    # This content below being written to `/etc/needrestart/needrestart.conf` is to mainly override the
+    # #$nrconf{restart} = 'i'; from being interactive, so changing it from
+    # #$nrconf{restart} = 'i'; <-- to --> #$nrconf{restart} = 'q';
+    # REFERENCE - https://stackoverflow.com/questions/73397110/how-to-stop-ubuntu-pop-up-daemons-using-outdated-libraries-when-using-apt-to-i
+    # --- END_COMMENT --- --- END_COMMENT --- --- END_COMMENT --- --- END_COMMENT --- --- END_COMMENT --- --- END_COMMENT ---
+    content: |
+      # needrestart - Restart daemons after library updates.
+      #
+      # This is the configuration file of needrestart. This is perl syntax.
+      # needrestart uses reasonable default values, you might not need to
+      # change anything.
+      #
+
+      # Verbosity:
+      #  0 => quiet
+      #  1 => normal (default)
+      #  2 => verbose
+      #$nrconf{verbosity} = 2;
+
+      # Path of the package manager hook scripts.
+      #$nrconf{hook_d} = '/etc/needrestart/hook.d';
+
+      # Path of user notification scripts.
+      #$nrconf{notify_d} = '/etc/needrestart/notify.d';
+
+      # Path of restart scripts.
+      #$nrconf{restart_d} = '/etc/needrestart/restart.d';
+
+      # Disable sending notifications to user sessions running obsolete binaries
+      # using scripts from $nrconf{notify_d}.
+      #$nrconf{sendnotify} = 0;
+
+      # If needrestart detects systemd it assumes that you use systemd's pam module.
+      # This allows needrestart to easily detect user session. In case you use
+      # systemd *without* pam_systemd.so you should set has_pam_systemd to false
+      # to enable legacy session detection!
+      #$nrconf{has_pam_systemd} = 0;
+
+      # Restart mode: (l)ist only, (i)nteractive or (a)utomatically.
+      #
+      # ATTENTION: If needrestart is configured to run in interactive mode but is run
+      # non-interactive (i.e. unattended-upgrades) it will fallback to list only mode.
+      #
+      #$nrconf{restart} = 'q';
+
+      # Use preferred UI package.
+      #$nrconf{ui} = 'NeedRestart::UI::stdio';
+
+      # Change default answer to 'no' in (i)nteractive mode.
+      #$nrconf{defno} = 1;
+
+      # Set UI mode to (e)asy or (a)dvanced.
+      #$nrconf{ui_mode} = 'e';
+
+      # Print a combined `systemctl restart` command line for skipped services.
+      #$nrconf{systemctl_combine} = 1;
+
+      # Blacklist binaries (list of regex).
+      $nrconf{blacklist} = [
+          # ignore sudo (not a daemon)
+          qr(^/usr/bin/sudo(\.dpkg-new)?$),
+
+          # ignore DHCP clients
+          qr(^/sbin/(dhclient|dhcpcd5|pump|udhcpc)(\.dpkg-new)?$),
+
+          # ignore apt-get (Debian Bug#784237)
+          qr(^/usr/bin/apt-get(\.dpkg-new)?$),
+      ];
+
+      # Blacklist services (list of regex) - USE WITH CARE.
+      # You should prefer to put services to $nrconf{override_rc} instead.
+      # Any service listed in $nrconf{blacklist_rc} will be ignored completely!
+      #$nrconf{blacklist_rc} = [
+      #];
+
+      # Override service default selection (hash of regex).
+      $nrconf{override_rc} = {
+          # DBus
+          qr(^dbus) => 0,
+
+          # display managers
+          qr(^gdm) => 0,
+          qr(^kdm) => 0,
+          qr(^nodm) => 0,
+          qr(^sddm) => 0,
+          qr(^wdm) => 0,
+          qr(^xdm) => 0,
+          qr(^lightdm) => 0,
+          qr(^slim) => 0,
+          qr(^lxdm) => 0,
+
+      # networking stuff
+      qr(^bird) => 0,
+      qr(^network) => 0,
+      qr(^NetworkManager) => 0,
+      qr(^ModemManager) => 0,
+      qr(^wpa_supplicant) => 0,
+      qr(^openvpn) => 0,
+      qr(^quagga) => 0,
+      qr(^frr) => 0,
+      qr(^tinc) => 0,
+      qr(^(open|free|libre|strong)swan) => 0,
+      qr(^bluetooth) => 0,
+
+      # gettys
+      qr(^getty@.+\.service) => 0,
+
+      # systemd --user
+      qr(^user@\d+\.service) => 0,
+
+      # misc
+      qr(^zfs-fuse) => 0,
+      qr(^mythtv-backend) => 0,
+      qr(^xendomains) => 0,
+      qr(^lxcfs) => 0,
+      qr(^libvirt) => 0,
+      qr(^virtlogd) => 0,
+      qr(^virtlockd) => 0,
+      qr(^docker) => 0,
+
+      # systemd stuff
+      # (see also Debian Bug#784238 & #784437)
+      qr(^emergency\.service$) => 0,
+      qr(^rescue\.service$) => 0,
+      qr(^elogind) => 0,
+
+      # do not restart oneshot services, see also #862840
+      qr(^apt-daily\.service$) => 0,
+      qr(^apt-daily-upgrade\.service$) => 0,
+      qr(^unattended-upgrades\.service$) => 0,
+      # do not restart oneshot services from systemd-cron, see also #917073
+      qr(^cron-.*\.service$) => 0,
+
+      # ignore rc-local.service, see #852864
+      qr(^rc-local\.service$) => 0,
+
+      # don't restart systemd-logind, see #798097
+      qr(^systemd-logind) => 0,
+      };
+
+      # Override container default selection (hash of regex).
+      $nrconf{override_cont} = {
+      };
+
+      # Disable interpreter scanners.
+      #$nrconf{interpscan} = 0;
+
+      # Ignore script files matching these regexs:
+      $nrconf{blacklist_interp} = [
+          # ignore temporary files
+          qr(^/tmp/),
+          qr(^/var/),
+          qr(^/run/),
+
+      ];
+
+      # Ignore +x mapped files matching one of these regexs:
+      $nrconf{blacklist_mappings} = [
+          # special device paths
+          qr(^/(SYSV00000000( \(deleted\))?|drm(\s|$)|dev/)),
+
+          # ignore memfd mappings
+          qr(^/memfd:),
+
+          # aio(7) mapping
+          qr(^/\[aio\]),
+
+        # Oil Runtime Compiler's JIT files
+        qr#/orcexec\.[\w\d]+( \(deleted\))?$#,
+
+        # plasmashell (issue #65)
+        qr(/#\d+( \(deleted\))?$),
+
+        # Java Native Access (issues #142 #185)
+        qr#/jna\d+\.tmp( \(deleted\))?$#,
+
+        # temporary stuff
+        qr#^(/var)?/tmp/#,
+        qr#^(/var)?/run/#,
+      ];
+
+      # Verify mapped files in filesystem:
+      # 0 : enabled
+      # -1: ignore non-existing files, workaround for chroots and broken grsecurity kernels (default)
+      # 1 : disable check completely, rely on content of maps file only
+      $nrconf{skip_mapfiles} = -1;
+
+      # Enable/disable hints on pending kernel upgrades:
+      #  1: requires the user to acknowledge pending kernels
+      #  0: disable kernel checks completely
+      # -1: print kernel hints to stderr only
+      #$nrconf{kernelhints} = -1;
+
+      # Filter kernel image filenames by regex. This is required on Raspian having
+      # multiple kernel image variants installed in parallel.
+      #$nrconf{kernelfilter} = qr(kernel7\.img);
+
+      # Enable/disable CPU microcode update hints:
+      #  1: requires the user to acknowledge pending updates
+      #  0: disable microcode checks completely
+      #$nrconf{ucodehints} = 0;
+
+      # Nagios Plugin: configure return code use by nagios
+      # as service status[1].
+      #
+      # [1] https://nagios-plugins.org/doc/guidelines.html#AEN78
+      #
+      # Default:
+      #  'nagios-status' => {
+      #     'sessions' => 1,
+      #     'services' => 2,
+      #     'kernel' => 2,
+      #     'ucode' => 2,
+      #     'containers' => 1
+      #  },
+      #
+      # Example: to ignore outdated sessions (status OK)
+      # $nrconf{'nagios-status'}->{sessions} = 0;
+
+
+      # Read additional config snippets.
+      if(-d q(/etc/needrestart/conf.d)) {
+            foreach my $fn (sort </etc/needrestart/conf.d/*.conf>) {
+              print STDERR "$LOGPREF eval $fn\n" if($nrconf{verbosity} > 1);
+              eval do { local(@ARGV, $/) = $fn; <>};
+              die "Error parsing $fn: $@" if($@);
+            }
+      }
+
+runcmd:
+  - apt install mysql-server -y
+  - apt install redis-server -y # might need tweaking after
+  - mysql -u root -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'qX_4n9=r%@N?Co#s';" # Set root user password: find a way to use the password as an env variable
+  - apt install nginx -y # for some reason the nginx in packages section is not installing nginx, yikes
+  - ufw allow http
+  - LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php -y # Add the Ondrej PPA, which contains all versions of PHP packages for Ubuntu systems
+  - apt-get install php8.2 php8.2-cli unzip openssl php8.2-common php8.2-bcmath php8.2-gd php8.2-curl php-json php8.2-mbstring php8.2-mysql php-tokenizer php8.2-xml php8.2-zip php8.2-fpm -y
+  - curl -fsSL https://deb.nodesource.com/setup_18.x | bash - # Add the NodeSource repository which provides the latest Node.js packages for Ubuntu
+  - apt-get install nodejs -y
+  - apt-get install npm -y
+  - |
+    export COMPOSER_HOME="$HOME/.config/composer" &&
+    curl -sS https://getcomposer.org/installer -o /tmp/composer-setup.php &&
+    HASH=`curl -sS https://composer.github.io/installer.sig` &&
+    echo $HASH &&
+    php -r "if (hash_file('SHA384', '/tmp/composer-setup.php') === '$HASH') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" &&
+    php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
+
+  - |
+    ln -s /etc/nginx/sites-available/scanner.ricardotest.com /etc/nginx/sites-enabled/ &&
+    systemctl reload nginx
+
+  # - mkdir -p /etc/apt/keyrings
+  # - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+  # - echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
+  # - apt-get update
+  # - apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
+  # - systemctl enable docker
+  # - systemctl start docker
+
+  - curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+  - chmod +x /usr/local/bin/docker-compose
+  - docker-compose --version
+
+final_message: 'The system is finally up, after $UPTIME seconds'
