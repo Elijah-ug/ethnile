@@ -12,7 +12,6 @@ const Timer = () => {
            <div className="content">
 
         {/* Countdown to the start of the event */}
-        <h2>Until Event Starts</h2>
         <Countdown date={eventStartDate} renderer={renderer} />
 
         {/* Countdown to the end of the event */}

@@ -30,11 +30,11 @@ export const ContactUs = () => {
       <form ref={form} onSubmit={sendEmail}>
           <div className="form">
       <label>Name</label>
-      <input type="text" name="to_name" />
+      <input type="text" name="to_name" placeholder="Enter your name..." />
       <label>Email</label>
-      <input type="email" name="from_name" />
+      <input type="email" name="from_name" placeholder="Enter your email..." />
       <label>Message</label>
-      <textarea name="message" />
+      <textarea name="message" placeholder="Enter your message..." />
               <input type="submit" value="Send" />
               </div>
       </form>

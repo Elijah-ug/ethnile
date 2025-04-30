@@ -1,78 +1,182 @@
-.footer-container{
-     background-color: rgb(27, 29, 36);
-     padding: 5% 0;
-}
-.upper-footer{
-    display: flex;
-    align-items: baseline;
-    justify-content: space-around;
-    width: 70%;
-    padding-left: 15%;
-    padding-bottom: 3%;
-}
-.about-us h3, .links h3, .connection h3 {
-    text-transform: uppercase;
-    font-weight: 200;
-    font-size: 15px;
-    color: #898989;
-    word-spacing: 4px;
-    padding-bottom: 12px;
+/* Reset and Box Sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.links a, .connection a{
-    text-decoration: none;
-    color: #fff;
+/* Footer Base */
+.footer-container {
+  background-color: rgb(27, 29, 36);
+  padding: 2rem 1rem;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
-.icon-media{
-    display: flex;
-    align-items: center;
-    gap: 26px;
+
+/* Top Section Layout */
+.upper-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  box-sizing: border-box;
 }
-.links a:hover, .connection a:hover{
-    color: #fd3c3c;
-    transition: all .3s ease-in-out;
+
+/* Contact & Social Sections */
+.about-us,
+.connection {
+  width: 100%;
+  max-width: 500px;
+  margin: 1rem;
+  text-align: center;
+  /* border: 1px solid red; */
 }
-.lower-footer{
-    padding-top: 3%;
-    text-align: center;
+
+/* Section Titles */
+.about-us h3,
+.links h3,
+.connection h3 {
+  text-transform: uppercase;
+  font-weight: 200;
+  font-size: 15px;
+  color: #898989;
+  word-spacing: 4px;
+  padding-bottom: 12px;
 }
-.horizontal-row{
-    width: 74%;
-   font-size: .01px;
-   border: 1px solid #454545;
+
+/* Links */
+.links a,
+.connection a {
+  text-decoration: none;
+  color: #fff;
 }
-.lower-footer p{
-     padding-bottom: 8%;
-     font-weight: 100;
-     font-size: 14px;
-    word-spacing: 2px;
-     letter-spacing: 2px;
+
+.links a:hover,
+.connection a:hover {
+  color: #fd3c3c;
+  transition: all 0.3s ease-in-out;
 }
+
+/* Social Icons */
+.icon-media {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 26px;
+}
+
 .icon-media .img {
-   font-size: 30px;
+  font-size: 30px;
 }
-@media only screen and (max-width: 600px){
-    .footer-container{
-     width: 100%;
-     padding-left: 1px;
-     padding-right: 10%;
-}
-    .upper-footer{
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    /* padding-left: 14px; */
-    /* padding-right: 14px; */
-}
-.about-us{
-    padding-left: 10px;
-    text-align: center;
-    /* changed */
-    width: 100%;
-}
-.connection{
-    padding-left: 100px;
-    padding-top: 20px;
 
+/* Lower Footer */
+.lower-footer {
+  padding-top: 3%;
+  text-align: center;
 }
+
+.horizontal-row {
+  width: 80%;
+  margin: 0 auto;
+  border: 1px solid #454545;
+}
+
+.lower-footer p {
+  padding-bottom: 8%;
+  font-weight: 100;
+  font-size: 14px;
+  word-spacing: 2px;
+  letter-spacing: 2px;
+}
+
+/* Email & Form */
+.email {
+  width: 100%;
+  padding: 0 1rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin: 0 auto;
+  color: #9b9999;
+  /* width: 100%; */
+  max-width: 500px;
+}
+
+label {
+  padding-top: 10px;
+  padding-bottom: 4px;
+  font-size: 14px;
+  align-self: flex-start;
+}
+
+textarea,
+input[type="text"],
+input[type="email"],
+input[type="submit"] {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #eae7e7;
+  font-size: 16px;
+  background-color: #c0bdbd;
+  color: #565656;
+  margin-bottom: 12px;
+  width: 100%;
+  outline: none;
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+input[type="submit"] {
+  cursor: pointer;
+  background-color: #565656;
+  color: white;
+  align-self: center;
+  transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+  background-color: #3f3f3f;
+  opacity: 0.8;
+}
+
+/* 🔧 Responsive Styles */
+@media only screen and (max-width: 768px) {
+  .footer-container {
+    padding: 2rem 1rem;
+  }
+
+  .upper-footer {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 0;
+    min-width: 0;
+  }
+
+  .about-us,
+  .connection {
+    width: 100%;
+    min-width: 0;
+    margin: 2rem 0;
+    padding: .5rem;
+    box-sizing: border-box;
+  }
+
+  .horizontal-row {
+    width: 90%;
+  }
 }

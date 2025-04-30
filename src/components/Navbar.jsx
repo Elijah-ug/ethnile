@@ -1,12 +1,18 @@
 import "./styles/navigation.css";
+// import "./styles/header.css";
 import EthNile3 from "../assets/changed.png"
 import { TfiAlignJustify, TfiClose } from "react-icons/tfi";
-import { useState } from "react";
+import { Link } from 'react-scroll';
+import { useState } from "react"
 const Navbar = () => {
-  const [isActive, setIsActive] = useState(false)
+  const [isActive, setIsActive] = useState(true)
+
   const handleIsActive = () => {
       setIsActive(!isActive)
+  }
 
+  const handleClickedLink = () => {
+    setIsActive(!isActive)
   }
   return (
     <header className="navbar">
@@ -14,18 +20,24 @@ const Navbar = () => {
       <nav className="navbar__links">
         <div className="bars" onClick={handleIsActive}>
 
-            {isActive ? (
+            {isActive? (
           <span className="burger-icons"><TfiAlignJustify/></span> // X icon
         ) : (
           <span className="burger-icon"><TfiClose /></span> // Hamburger icon
         )}
         </div>
 
-        <div className={!isActive? "links" : "hidden"}>
-        <a href="#home">Home</a>
-        <a href="#speakers">Speakers</a>
+        <div className={!isActive ? "links" : "hidden"}>
+<Link onClick={handleClickedLink} to="home" smooth={true} duration={500}>Home</Link>
+<Link onClick={handleClickedLink} to="speakers" smooth={true} duration={500}>About</Link>
+<Link onClick={handleClickedLink} to="speakers" smooth={true} duration={500}>Explore</Link>
+<Link onClick={handleClickedLink} to="schedule" smooth={true} duration={500}>Speakers</Link>
+<Link onClick={handleClickedLink} to="register" smooth={true} duration={500}>Contact Us</Link>
+
+        {/* <a href="/home">Home</a>
+        <a href="/Speakers">Speakers</a>
         <a href="#schedule">Schedule</a>
-          <a href="#register">Register</a>
+          <a href="#register">Register</a> */}
           </div>
         {/* <FadeInSection><a href="#home">Home</a></FadeInSection>
   <FadeInSection><a href="#speakers">Speakers</a></FadeInSection>

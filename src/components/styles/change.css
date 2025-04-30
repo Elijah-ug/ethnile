@@ -152,7 +152,7 @@ button:hover {
 }
 
 /* 📱 Mobile responsiveness */
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 768px) {
   .home-container-two {
     padding-top: 22%;
     padding-left: 50px;

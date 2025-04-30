@@ -1,0 +1,199 @@
+/* ✅ Background video (only spans the home component) */
+.home-container-three {
+  position: relative;
+  min-height: 100vh;  /* Adjust based on the height of your component */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.background-video {
+  position: absolute;  /* Position it within the home component */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2; /* Behind everything inside .home-container-three */
+}
+
+/* 🔁 Removed background image overlay (since we’re using video) */
+.home-container-three::before {
+  content: "";
+  position: absolute;
+  inset: -50%;
+  opacity: 0.1; /* Optional, can adjust based on video contrast */
+  z-index: -1;
+  transform-origin: center center;
+  filter: blur(2px); /* Optional blur effect */
+}
+
+/* 🌒 Dark overlay to improve contrast */
+.home-container-three::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  box-shadow: inset 0 0 80px rgba(255, 255, 255, 0.05);
+  z-index: -1;
+}
+
+/* ✅ Content styling (No changes needed here) */
+.home-container-two {
+  display: flex;
+  flex-direction: column;
+  padding-left: 14%;
+  width: 70%;
+  padding-top: 4%;
+  margin-bottom: 10%;
+  position: relative;
+  z-index: 2; /* Make sure it’s above overlays */
+}
+
+.date {
+  font-size: 27.2px;
+  font-weight: 300;
+  letter-spacing: 4px;
+}
+.city-conference {
+  font-weight: 500;
+  font-size: 76px;
+  letter-spacing: 10px;
+  margin: 2rem auto;
+}
+.countdown-timer,
+.dates {
+  display: flex;
+  align-items: center;
+  font-size: 25px;
+  gap: 150px;
+  margin-right: 50px;
+  color: #e83c16;
+}
+.time-block {
+  text-align: center;
+}
+
+.time-block .time-label, .time-number {
+  margin: 2rem auto;
+}
+.time-number {
+  font-size: 30px;
+}
+span {
+  background: linear-gradient(to right, rgb(199, 0, 57), rgb(255, 87, 51) 70%);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}
+.french-word {
+  margin: 4rem 0;
+  font-weight: 400;
+  font-size: 30px;
+  letter-spacing: 3px;
+}
+.schedule {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: end;
+  margin-right: 240px;
+}
+.schedule a {
+  color: #e8dddd;
+}
+.btn-icon {
+  cursor: pointer;
+  font-size: 16px;
+  transition: transform 0.3s ease;
+}
+.btn-icon:hover {
+  transform: scaleX(2) translateX(5px);
+  color: #e209f6;
+}
+button {
+  width: 30%;
+  font-weight: 300;
+  font-size: 16px;
+  background-color: #393f44;
+  padding: 18px 0;
+  border: 1px solid #393f44;
+  color: #ccc9c9;
+  letter-spacing: 2px;
+  margin-top: 40px;
+  background: linear-gradient(to left, #393f44 50%, rgb(255, 87, 51) 50%) right;
+  background-size: 200%;
+  transition: .5s ease-out;
+}
+button:hover {
+  cursor: pointer;
+  background-position: left;
+}
+
+/* Media Query for Smaller Screens */
+@media only screen and (max-width: 768px) {
+  /* 🔧 Adjusted padding and layout direction for better stacking */
+  .home-container-three {
+    padding: 2rem 1rem; /* Simplified and balanced padding */
+    height: auto;
+    flex-direction: column; /* Added for stacking layout on small screens */
+    justify-content: flex-start; /* Ensures top alignment */
+  }
+
+  /* 🔧 Cleaned up inner container spacing and alignment */
+  .home-container-two {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    text-align: center;
+    align-items: center;
+    padding-top: 3rem; /* More consistent vertical spacing */
+  }
+
+  /* ✅ Font and spacing scaled down for mobile readability */
+  .date {
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem; /* Added margin for spacing */
+  }
+
+  .city-conference {
+    font-weight: 600;
+    font-size: 38px; /* Reduced from 38px */
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+  }
+
+  .french-word {
+    font-size: 20px;
+    letter-spacing: 1px;
+    margin-bottom: 1rem; /* Added space below */
+  }
+
+  /* 🔧 Converted timer layout to vertical stack on small screens */
+  .countdown-timer,
+  .datess {
+    gap: 1rem; /* Smaller gap for mobile */
+    font-size: 20px;
+    margin: 1.5rem 0;
+  }
+
+  /* 🔧 Centered and wrapped schedule links */
+  .schedule {
+    justify-content: center; /* Center the flex container */
+    margin-right: 0; /* Removed desktop spacing */
+    margin-top: 1.5rem;
+    flex-wrap: wrap; /* Allow line breaks if needed */
+  }
+
+  /* ✅ Better mobile button sizing */
+  button {
+    width: 90%; /* Wider button for tap targets */
+    font-size: 14px;
+    padding: 14px 0;
+    margin-top: 2rem;
+  }
+}

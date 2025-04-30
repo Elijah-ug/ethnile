@@ -1,5 +1,6 @@
 import React from 'react'
-import "./styles/footer.css"
+// import "./styles/footer.css"
+import "./styles/contact.css"
 import { FaTelegram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { ContactUs } from './ContactUs'

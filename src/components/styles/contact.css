@@ -1,28 +1,189 @@
-.form{
-    display: flex;
+/* ✅ Reset and Global Rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* ✅ Footer Base */
+.footer-container {
+  background-color: rgb(27, 29, 36);
+  padding: 2rem 1rem;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+/* ✅ Top Section Layout */
+.upper-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  box-sizing: border-box;
+  min-width: 0; /* Prevent overflow */
+}
+
+/* ✅ Contact & Social Sections */
+.about-us,
+.connection {
+  width: 100%;
+  max-width: 500px;
+  margin: 1rem;
+  text-align: center;
+  box-sizing: border-box;
+  min-width: 0; /* Prevent flex overflow */
+}
+
+/* ✅ Section Titles */
+.about-us h3,
+.links h3,
+.connection h3 {
+  text-transform: uppercase;
+  font-weight: 200;
+  font-size: 15px;
+  color: #898989;
+  word-spacing: 4px;
+  padding-bottom: 12px;
+}
+
+/* ✅ Links */
+.links a,
+.connection a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.links a:hover,
+.connection a:hover {
+  color: #fd3c3c;
+  transition: all 0.3s ease-in-out;
+}
+
+/* ✅ Social Icons */
+.icon-media {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 26px;
+}
+
+.icon-media .img {
+  font-size: 30px;
+}
+
+/* ✅ Lower Footer */
+.lower-footer {
+  padding-top: 3%;
+  text-align: center;
+}
+
+.horizontal-row {
+  width: 80%;
+  margin: 0 auto;
+  border: 1px solid #454545;
+}
+
+.lower-footer p {
+  padding-bottom: 8%;
+  font-weight: 100;
+  font-size: 14px;
+  word-spacing: 2px;
+  letter-spacing: 2px;
+}
+
+/* ✅ Email & Form */
+.email {
+  width: 100%;
+  padding: 0 1rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin: 0 auto;
+  color: #9b9999;
+  max-width: 500px;
+}
+
+label {
+  padding-top: 10px;
+  padding-bottom: 4px;
+  font-size: 14px;
+  align-self: flex-start;
+}
+
+textarea,
+input[type="text"],
+input[type="email"],
+input[type="submit"] {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #eae7e7;
+  font-size: 16px;
+  background-color: #c0bdbd;
+  color: #565656;
+  margin-bottom: 12px;
+  width: 100%;
+  outline: none;
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+input[type="submit"] {
+  cursor: pointer;
+  background-color: #565656;
+  color: white;
+  align-self: center;
+  transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+  background-color: #3f3f3f;
+  opacity: 0.8;
+}
+
+/* ✅ Responsive Fixes */
+@media only screen and (max-width: 768px) {
+  .footer-container {
+    padding: 2rem 1rem;
+  }
+
+  .upper-footer {
     flex-direction: column;
     align-items: center;
-    color: #9b9999;
-}
-label{
-    padding-top: 10px;
-    padding-bottom: 4px;
-}
-textarea,[type="text"],input[type="email"], input[type="submit"]{
-    padding: 10px;
-    outline: none;
-    border-radius: 8px;
-    border: 1px solid #afadad;
     width: 100%;
-    color: #565656;
-    font-size: 16px;
-    background-color: #c0bdbd;
-}
-input[type="submit"]{
-    margin-top: 10px;
-    width: 100px;
-    cursor: pointer;
-}
-input[type="submit"]:hover{
-    opacity: .8;
+    padding: 0;
+  }
+
+  .about-us,
+  .connection {
+    width: 100%;
+    margin: 2rem 0;
+    padding: 0.5rem;
+    /* border: 1px solid red; */
+  }
+
+  .horizontal-row {
+    width: 90%;
+  }
 }
